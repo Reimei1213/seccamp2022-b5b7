@@ -47,9 +47,9 @@ jobs:
       - name: Sign the container image
         env:
           COSIGN_EXPERIMENTAL: "true"
-        run: cosign sign --force ghcr.io/reimei1213/seccamp2022-b5b7@${{ steps.push-step.outputs.digest }}
+        run: cosign sign --force ghcr.io/${{ github.repository }}@${{ steps.push-step.outputs.digest }}
 
       - name: Verify the container image
         env:
           COSIGN_EXPERIMENTAL: "true"
-        run: cosign verify ghcr.io/reimei1213/seccamp2022-b5b7@${{ steps.push-step.outputs.digest }}
+        run: cosign verify ghcr.io/${{ github.repository }}@${{ steps.push-step.outputs.digest }}
