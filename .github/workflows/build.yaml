@@ -40,16 +40,16 @@ jobs:
           file: ./Dockerfile
           # Suppose that your repository is located at https://github.com/<X>/<Y>, this value should be equal to ghcr.io/<X>/<random value>:latest
           tags: |
-            ghcr.io/${{ github.actor }}/test-image:latest
+            ghcr.io/reimei1213/test-image:latest
           platforms: linux/amd64
           push: true
 
       - name: Sign the container image
         env:
           COSIGN_EXPERIMENTAL: "true"
-        run: cosign sign --force ghcr.io/${{ github.actor }}@${{ steps.push-step.outputs.digest }}
+        run: cosign sign --force ghcr.io/reimei1213@${{ steps.push-step.outputs.digest }}
 
       - name: Verify the container image
         env:
           COSIGN_EXPERIMENTAL: "true"
-        run: cosign verify ghcr.io/${{ github.actor }}@${{ steps.push-step.outputs.digest }}
+        run: cosign verify ghcr.io/reimei1213@${{ steps.push-step.outputs.digest }}
